@@ -1,12 +1,12 @@
 % Geometry & Material
-L = 3;                      % Half-span (m)
-W_total = 5000;             % Total lift (N)
+L = 5;                      % Half-span (m)
+W_total = 10000;             % Total lift (N)
 W_half = W_total / 2;       % Lift on half-wing (N)
 rho_al = 2700;              % Density of Aluminum (kg/m^3)
 sigma_yield = 240e6;        % Yield strength of Al 6061-T6 (Pa)
 
 % Tapered Cross-section properties (Root to Tip)
-b_root = 0.20; b_tip = 0.10; % Width tapers from 20cm to 10cm
+b_root = 0.65; b_tip = 0.40; % Width tapers from 90cm to 40cm
 h_root = 0.12; h_tip = 0.04; % Height tapers from 12cm to 4cm
 
 % Spanwise coordinate
@@ -19,12 +19,15 @@ w0 = (4 * W_half) / (pi * L);
 w = w0 * sqrt(1 - (x/L).^2);
 
 %% 2. Varying Geometry (Taper)
+t_skin = 0.002;   % 2 mm
+t_spar = 0.004;   % 4 mm
+
 b = linspace(b_root, b_tip, 300);
 h = linspace(h_root, h_tip, 300);
-I = (b .* h.^3) / 12;         % Moment of Inertia varies along span
-y_max = h / 2;               % Distance to outer fiber varies
+I = 2*(b .* t_skin).*(h/2).^2;         % Moment of Inertia varies along span
+y_max = h / 2;                         % Distance to outer fiber varies
 
-A = b .* h;
+A= 2*b.*t_skin + 2*h.*t_spar;
 
 % Weight distribution (N/m) = Area * Density * Gravity
 w_weight = A * rho_al * 9.81;
@@ -57,5 +60,6 @@ plot(x, sigma / 1e6, 'b', 'LineWidth', 2); hold on;
 yline(sigma_yield / 1e6, 'r--', 'Yield Strength', 'LabelHorizontalAlignment', 'left');
 grid on; xlabel('Span position x (m)'); ylabel('Stress \sigma (MPa)');
 title(['Bending Stress (Min FoS: ', num2str(FoS, '%.2f'), ')']);
+
 
 fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
