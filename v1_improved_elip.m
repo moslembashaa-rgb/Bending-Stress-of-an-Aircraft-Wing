@@ -7,7 +7,7 @@ sigma_yield = 240e6;        % Yield strength of Al 6061-T6 (Pa)
 
 % Tapered Cross-section properties (Root to Tip)
 b_root = 0.65; b_tip = 0.40; % Width tapers from 90cm to 40cm
-h_root = 0.12; h_tip = 0.04; % Height tapers from 12cm to 4cm
+h_root = 0.12; h_tip = 0.08; % Height tapers from 12cm to 4cm
 
 % Spanwise coordinate
 x = linspace(0, L, 300);
@@ -63,3 +63,4 @@ title(['Bending Stress (Min FoS: ', num2str(FoS, '%.2f'), ')']);
 
 
 fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
+
