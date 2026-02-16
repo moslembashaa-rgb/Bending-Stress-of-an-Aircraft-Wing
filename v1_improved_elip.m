@@ -1,21 +1,23 @@
 % Geometry & Material
 L = 5;                      % Half-span (m)
-W_total = 10000;             % Total lift (N)
-W_half = W_total / 2;       % Lift on half-wing (N)
+                % Total lift (N)
+W = 5000;       % Lift on half-wing (N)
 rho_al = 2700;              % Density of Aluminum (kg/m^3)
 sigma_yield = 240e6;        % Yield strength of Al 6061-T6 (Pa)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Tapered Cross-section properties (Root to Tip)
-b_root = 0.65; b_tip = 0.40; % Width tapers from 90cm to 40cm
-h_root = 0.12; h_tip = 0.08; % Height tapers from 12cm to 4cm
+b_root = 0.65; b_tip = 0.40; % Width tapers from 65cm to 40cm
+h_root = 0.12; h_tip = 0.08; % Height tapers from 12cm to 8cm
 
 % Spanwise coordinate
 x = linspace(0, L, 300);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% 1. Elliptical Lift Distribution
 % Formula: w(x) = w0 * sqrt(1 - (x/L)^2)
 % Total Lift = (pi * w0 * L) / 4 -> solve for w0
-w0 = (4 * W_half) / (pi * L);
+w0 = (4 * W) / (pi * L);
 w = w0 * sqrt(1 - (x/L).^2);
 
 %% 2. Varying Geometry (Taper)
@@ -63,4 +65,9 @@ title(['Bending Stress (Min FoS: ', num2str(FoS, '%.2f'), ')']);
 
 
 fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
+
+
+
+fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
+
 
