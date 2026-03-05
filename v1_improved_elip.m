@@ -1,7 +1,7 @@
 % Geometry & Material
 L = 5;                      % Half-span (m)
                 % Total lift (N)
-W = 12000;       % Lift on half-wing (N)
+W = 20000;       % Lift on half-wing (N)
 rho_al = 2700;              % Density of Aluminum (kg/m^3)
 sigma_yield = 240e6;        % Yield strength of Al 6061-T6 (Pa)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,6 +69,7 @@ fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
 
 
 fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
+
 
 
 
