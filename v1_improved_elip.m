@@ -1,14 +1,14 @@
 % Geometry & Material
 L = 5;                      % Half-span (m)
                 % Total lift (N)
-W = 20000;       % Lift on half-wing (N)
+W = 14000;       % Lift on half-wing (N)
 rho_al = 2700;              % Density of Aluminum (kg/m^3)
 sigma_yield = 240e6;        % Yield strength of Al 6061-T6 (Pa)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Tapered Cross-section properties (Root to Tip)
 b_root = 0.65; b_tip = 0.40; % Width tapers from 65cm to 40cm
-h_root = 0.12; h_tip = 0.08; % Height tapers from 12cm to 8cm
+h_root = 0.08; h_tip = 0.0547; % Height tapers from 12cm to 8cm
 
 % Spanwise coordinate
 x = linspace(0, L, 300);
@@ -69,6 +69,7 @@ fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
 
 
 fprintf('The Minimum Factor of Safety is: %.2f\n', FoS);
+
 
 
 
