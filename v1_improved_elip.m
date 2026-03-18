@@ -24,15 +24,15 @@ w = w0 * sqrt(1 - (x/L).^2);
 %Geometry  (constant)
 t_skin = 0.002;  
 t_spar = 0.004;   
-w_spar_f = 0.030; % 30mm width
-w_spar_r = 0.020 
+w_spar_f = 0.030;
+w_spar_r = 0.020;
 
 b = linspace(b_root, b_tip, 300);
 h = linspace(h_root, h_tip, 300);
 
 I_skin = 2 * (b .* t_skin) .* (h/2).^2;
-I_front = (1/12) * t_spar .* h.^3;
-I_rear = (1/12) * t_spar .* h.^3;
+I_front = (1/12)*w_spar_f*h.^3 - (1/12)*(w_spar_f - 2*t_spar)*(h - 2*t_spar).^3;
+I_rear = (1/12)*t_spar*h.^3 + 2*(w_spar_r * t_spar * (h/2).^2);
 I = I_skin + I_front + I_rear;
 
 A_skin = 2 * (b .* t_skin);
@@ -41,9 +41,6 @@ A_rear = 2 * (w_spar_r * t_spar) + (h * t_spar);   % C-channel
 A = A_skin + A_front + A_rear;
 
 y_max = h / 2; 
-
-
-A= 2*b.*t_skin + 2*h.*t_spar;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Weight
